@@ -44,5 +44,19 @@ public class Sector {
         this.precio = precio;
     }
     
-    
+    public float precio(){
+        if(tipo == TipoSector.CAMPO){
+            return 8599;
+        }
+        if(tipo == TipoSector.CAMPOVIP){
+            return 16800;
+        }
+        if(tipo == TipoSector.GENERAL){
+            return 10000;
+        }
+        if(tipo == TipoSector.PLATEA){
+            return 11500;
+        } 
+        return 0;
+    }
 }

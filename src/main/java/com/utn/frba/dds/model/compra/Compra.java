@@ -73,7 +73,6 @@ public class Compra {
         this.estadoCompra = estado;
     }
     
-    // public float total(){}
     
     // pagarCompra()
     
@@ -107,6 +106,28 @@ public class Compra {
             entrada.visualizarEntrada();
         System.out.println();
     }
+    
+    public float precioEntrada(Entrada entrada){
+        return entrada.precioEntrada();
+        
+    }
+
+    public float precioTotalEntradas() {
+        float sumatoriaPrecioEntradas= 0;
+        for(Entrada entrada : entradas){
+            sumatoriaPrecioEntradas = sumatoriaPrecioEntradas + entrada.precioEntrada();
+        }
+        return sumatoriaPrecioEntradas;
+                
+   
+    }
+    
+    public float precioTotalConDescuento(){
+        
+        return descuento.aplicarDescuento(this) ;
+        
+    }
+    
     
     
 }

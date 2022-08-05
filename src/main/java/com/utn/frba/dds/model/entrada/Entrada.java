@@ -73,5 +73,7 @@ public class Entrada {
 
     }
     
-    
+    public float precioEntrada(){
+        return sector.getPrecio();
+    }
 }

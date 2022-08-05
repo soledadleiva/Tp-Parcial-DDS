@@ -2,6 +2,8 @@
 package com.utn.frba.dds.model.compra;
 
 
-public class DescuentoStrategy {
+public interface DescuentoStrategy {
+    
+    public float aplicarDescuento(Compra compra);
     
 }
