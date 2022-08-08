@@ -3,12 +3,19 @@ package com.utn.frba.dds.model.entrada;
 
 import com.utn.frba.dds.model.compra.Cliente;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "entrada")
 public class Entrada {
-    
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    @Transient
     private Sector sector;
+    @Transient
     private Cliente cliente;
+    @Transient
     private Artista artista;
     private String lugar;
 

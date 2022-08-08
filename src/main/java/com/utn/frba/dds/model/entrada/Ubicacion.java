@@ -1,9 +1,14 @@
 
 package com.utn.frba.dds.model.entrada;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "ubicacion")
 public class Ubicacion {
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private Integer fila;
     private Integer columna;
 

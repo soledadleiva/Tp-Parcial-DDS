@@ -1,13 +1,23 @@
 
 package com.utn.frba.dds.model.compra;
 
+import javax.persistence.*;
 
-public class Tarjeta {
-    
+@Entity
+@Table(name = "tarjeta")
+        public class Tarjeta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String numeroTarjeta;
     private Boolean esTarjetaValida;
     private float saldo;
     private float limite;
+
+    @ManyToOne
+  @JoinColumn(name = "cliente_id")
+ private Cliente cliente;
 
     public Tarjeta() {
     }

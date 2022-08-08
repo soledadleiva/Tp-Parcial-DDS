@@ -1,15 +1,24 @@
 
 package com.utn.frba.dds.model.compra;
 
+import javax.persistence.*;
 import java.util.List;
 
-
+@Entity
+@Table(name = "cliente")
 public class Cliente {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String nombre;
     private String apellido;
     private String direccion;
     private String mail;
+
+   // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // A la hora de eliminar un cliente, las tarjetas tambien se van a eliminar
+   //@JoinColumn(name = "cliente_id")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // Relacion bidireccional con Tarjeta
     private List<Tarjeta> tarjetas;
 
 

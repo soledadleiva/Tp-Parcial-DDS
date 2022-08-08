@@ -1,16 +1,23 @@
 
 package com.utn.frba.dds.model.entrada;
 
+import javax.persistence.*;
 
-public class Sector {
-    
+@Entity
+@Table(name = "sector")
+        public class Sector {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Transient
     private Ubicacion ubicacion;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipoDeSector")
     private TipoSector tipo;
     private float precio;
     
     
-    //Meter los precios con ifs...
-
     public Sector() {
     }
 

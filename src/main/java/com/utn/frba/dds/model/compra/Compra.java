@@ -4,15 +4,30 @@ package com.utn.frba.dds.model.compra;
 import com.utn.frba.dds.model.entrada.Entrada;
 
 import com.utn.frba.dds.model.metodosDePago.MetodoDePago;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "compra")
 public class Compra {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+   @ManyToMany(cascade = CascadeType.REFRESH) //Si se hace un cambio en la compra, la informacion de la entrada se mantiene actualizada
     private List<Entrada> entradas;
+    @ManyToOne()
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @Transient
     private MetodoDePago metodoDePago;
+    @Transient
     private DescuentoStrategy descuento;
+    @Transient
     protected EstadoCompra estadoCompra;
+
+    private String fechaDeCompra;
 
     
     public Compra() {
