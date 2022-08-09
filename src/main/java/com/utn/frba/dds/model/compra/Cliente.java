@@ -16,10 +16,9 @@ public class Cliente {
     private String direccion;
     private String mail;
 
-   // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // A la hora de eliminar un cliente, las tarjetas tambien se van a eliminar
-   //@JoinColumn(name = "cliente_id")
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // Relacion bidireccional con Tarjeta
     private List<Tarjeta> tarjetas;
+
 
 
     public Cliente() {

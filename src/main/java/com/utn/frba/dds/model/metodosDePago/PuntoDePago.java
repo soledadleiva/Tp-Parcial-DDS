@@ -2,6 +2,6 @@
 package com.utn.frba.dds.model.metodosDePago;
 
 
-public class PuntoDePago {
+public interface PuntoDePago extends CreadorPuntoDePago {
     
 }

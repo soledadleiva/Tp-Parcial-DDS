@@ -12,6 +12,18 @@ public class Ubicacion {
     private Integer fila;
     private Integer columna;
 
+    @ManyToOne
+    @JoinColumn(name = "sector_id")
+    private Sector sector;
+
+    public Sector getSector() {
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
     public Ubicacion() {
     }
 

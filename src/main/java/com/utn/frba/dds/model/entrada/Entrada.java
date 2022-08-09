@@ -1,7 +1,7 @@
 
 package com.utn.frba.dds.model.entrada;
 
-import com.utn.frba.dds.model.compra.Cliente;
+import com.utn.frba.dds.model.compra.Compra;
 
 import javax.persistence.*;
 
@@ -11,23 +11,24 @@ public class Entrada {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "sector_id")
     private Sector sector;
-    @Transient
-    private Cliente cliente;
     @Transient
     private Artista artista;
     private String lugar;
 
+    @ManyToOne
+    @JoinColumn(name = "compra_id")
+    private Compra compra;
     public Entrada() {
     }
 
     
     
-    public Entrada(int id, Sector sector, Cliente cliente, Artista artista, String lugar) {
+    public Entrada(int id, Sector sector, Artista artista, String lugar) {
         this.id = id;
         this.sector = sector;
-        this.cliente = cliente;
         this.artista = artista;
         this.lugar = lugar;
     }
@@ -48,13 +49,6 @@ public class Entrada {
         this.sector = sector;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 
     public Artista getArtista() {
         return artista;
@@ -74,7 +68,6 @@ public class Entrada {
     
     public void visualizarEntrada(){
         System.out.println("Sector: " + sector);
-        System.out.println("Cliente: " + cliente);
         System.out.println("Artista: " + artista);
         System.out.println("Lugar: " + lugar);
 

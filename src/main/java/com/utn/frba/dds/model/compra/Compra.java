@@ -15,7 +15,8 @@ public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-   @ManyToMany(cascade = CascadeType.REFRESH) //Si se hace un cambio en la compra, la informacion de la entrada se mantiene actualizada
+
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
     @ManyToOne()
     @JoinColumn(name = "cliente_id")

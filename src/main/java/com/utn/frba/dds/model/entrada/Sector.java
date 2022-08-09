@@ -2,6 +2,7 @@
 package com.utn.frba.dds.model.entrada;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "sector")
@@ -10,28 +11,49 @@ import javax.persistence.*;
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Transient
-    private Ubicacion ubicacion;
+    @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Entrada> entradas;
+
+    @OneToMany(mappedBy = "sector",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Ubicacion> ubicacion;
     @Enumerated(EnumType.STRING)
     @Column(name = "tipoDeSector")
     private TipoSector tipo;
     private float precio;
     
-    
+
     public Sector() {
     }
 
-    public Sector(Ubicacion ubicacion, TipoSector tipo, float precio) {
+    public Sector(Integer id, List<Entrada> entradas, List<Ubicacion> ubicacion, TipoSector tipo, float precio) {
+        this.id = id;
+        this.entradas = entradas;
         this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.precio = precio;
     }
 
-    public Ubicacion getUbicacion() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Entrada> getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
+    }
+
+    public List<Ubicacion> getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Ubicacion ubicacion) {
+    public void setUbicacion(List<Ubicacion> ubicacion) {
         this.ubicacion = ubicacion;
     }
 
