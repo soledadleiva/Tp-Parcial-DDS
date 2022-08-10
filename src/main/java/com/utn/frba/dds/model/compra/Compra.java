@@ -6,6 +6,7 @@ import com.utn.frba.dds.model.entrada.Entrada;
 import com.utn.frba.dds.model.metodosDePago.MetodoDePago;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class Compra {
     @Transient
     protected EstadoCompra estadoCompra;
 
-    private String fechaDeCompra;
+    private LocalDate fechaDeCompra;
 
     
     public Compra() {
