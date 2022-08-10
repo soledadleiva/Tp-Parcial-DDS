@@ -11,10 +11,12 @@ public interface CreadorPuntoDePago {
 
         if (puntoDePago.equalsIgnoreCase("PAGAYA")) {
             return new PagaYa();
+        }
         else {
             throw new IllegalStateException("Unexpected value: " + puntoDePago);
         }
-    	}
+
     }
+
 }
 
