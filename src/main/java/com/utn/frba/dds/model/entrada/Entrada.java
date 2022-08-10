@@ -1,23 +1,31 @@
 
 package com.utn.frba.dds.model.entrada;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.compra.Compra;
 
 import javax.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "entrada")
 public class Entrada {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "sector_id")
     private Sector sector;
     @Transient
     private Artista artista;
     private String lugar;
-
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "compra_id")
     private Compra compra;

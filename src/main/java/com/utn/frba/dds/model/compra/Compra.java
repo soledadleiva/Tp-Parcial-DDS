@@ -1,6 +1,10 @@
 
 package com.utn.frba.dds.model.compra;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.entrada.Entrada;
 
 import com.utn.frba.dds.model.metodosDePago.MetodoDePago;
@@ -9,6 +13,9 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "compra")
 public class Compra {
@@ -17,15 +24,19 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
     @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @JsonIgnore
     @Transient
     private MetodoDePago metodoDePago;
+    @JsonIgnore
     @Transient
     private DescuentoStrategy descuento;
+    @JsonIgnore
     @Transient
     protected EstadoCompra estadoCompra;
 
@@ -46,6 +57,32 @@ public class Compra {
         this.metodoDePago = metodoDePago;
         this.descuento = descuento;
         this.estadoCompra = estado;
+    }
+
+    public Compra(Integer id, List<Entrada> entradas, Cliente cliente, MetodoDePago metodoDePago, DescuentoStrategy descuento, EstadoCompra estadoCompra, LocalDate fechaDeCompra) {
+        this.id = id;
+        this.entradas = entradas;
+        this.cliente = cliente;
+        this.metodoDePago = metodoDePago;
+        this.descuento = descuento;
+        this.estadoCompra = estadoCompra;
+        this.fechaDeCompra = fechaDeCompra;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getFechaDeCompra() {
+        return fechaDeCompra;
+    }
+
+    public void setFechaDeCompra(LocalDate fechaDeCompra) {
+        this.fechaDeCompra = fechaDeCompra;
     }
 
     public List<Entrada> getEntradas() {
