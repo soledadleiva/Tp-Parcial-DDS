@@ -1,0 +1,23 @@
+Para este sistema usaremos la API: https://rapidapi.com/apidojo/api/shazam
+
+El propósito de este documento es analizar y desarrollar mediante la metodología más adecuada un sistema de venta de entradas para conciertos.
+Dentro de este se describen todos los requerimientos y funciones.
+
+Requerimientos Funcionales: 
+
+- Se realizará un sistema que permita la compra de entradas por parte de un cliente a recitales.
+- Condiciones de venta : Se permite la compra de un máximo de 4 entradas por operación.
+- Cuando se intente realizar una compra que supere la cantidad de entradas permitidas por persona, la compra pasara al estado "Rechazada". (Patrón de comportamiento: STATE).
+- El cliente al hacer la compra tendrá la posibilidad de elegir el método de pago entre los cuales pueden ser usando una tarjeta de debito, crédito o también en efectivo a través de un punto de pago físico. (Patrón estructural: ADAPTER). 
+- Se puede agregar un nuevo punto de pago físico para los pagos en efectivo. (Patrón creacional: FACTORY).
+- Se aplicara un descuento a dependiendo si el cliente cuenta con un cupón o si tiene una membresía. (Patrón de comportamiento: STRATEGY).
+- Se verificará el retiro de el/los tickets, utilizando la tarjeta utilizada junto a los datos de la persona que realizó la compra. (Base de datos relacional)
+- Se utilizará una api para encontrar los artistas que se desean ver y se mostrará una foto y link de info para ver. (API)
+
+
+Requerimientos No Funcionales:
+- El sistema debe ser capaz de tener muchos usuarios conectados al mismo tiempo.
+- El sistema debe proporcionar mensajes de error que sean informativos para el usuario.
+- Todos los artistas de la api están disponibles para ver.
+- Al imprimir una entrada esta debe incluir el Sector que incluye la fila y columna del asiento, el Artista y también el lugar del evento obteniendo los datos usando NoSQL. (Base de datos no relacional)
+- Las compras no tienen vencimiento, pero sí fecha de emisión. 
