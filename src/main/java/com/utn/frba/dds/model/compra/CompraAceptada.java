@@ -32,3 +32,6 @@ public class CompraAceptada extends EstadoCompra {
     }
     
 }
+
+//aca todavia no pago ni ingreso datos, una vez que ya esta aecptada llama un metodo para que regrese
+// a Compra

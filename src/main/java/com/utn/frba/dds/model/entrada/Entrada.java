@@ -25,6 +25,7 @@ public class Entrada {
     @Transient
     private Artista artista;
     private String lugar;
+    private String fecha;
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "compra_id")
@@ -32,13 +33,12 @@ public class Entrada {
     public Entrada() {
     }
 
-    
-    
-    public Entrada(int id, Sector sector, Artista artista, String lugar) {
+    public Entrada(int id, Sector sector, Artista artista, String lugar, String fecha) {
         this.id = id;
         this.sector = sector;
         this.artista = artista;
         this.lugar = lugar;
+        this.fecha = fecha;
     }
 
     public int getId() {
@@ -73,6 +73,10 @@ public class Entrada {
     public void setLugar(String lugar) {
         this.lugar = lugar;
     }
+
+    public String getFecha() { return fecha; }
+
+    public void setFecha(String fecha) { this.fecha = fecha; }
     
     public void visualizarEntrada(){
         System.out.println("Sector: " + sector);

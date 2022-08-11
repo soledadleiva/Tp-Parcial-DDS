@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.entrada.Entrada;
-
 import com.utn.frba.dds.model.metodosDePago.MetodoDePago;
 
 import javax.persistence.*;
@@ -172,8 +171,7 @@ public class Compra {
             sumatoriaPrecioEntradas = sumatoriaPrecioEntradas + entrada.precioEntrada();
         }
         return sumatoriaPrecioEntradas;
-                
-   
+
     }
     
     public float precioTotalConDescuento(){
@@ -181,7 +179,15 @@ public class Compra {
         return descuento.aplicarDescuento(this) ;
         
     }
-    
-    
-    
+
+    public static void comprar() {
+        //Compra.Compra();
+        // setearia el estado compra en curso
+        System.out.println("Ingrese la ubicacion que desea ir (: ");
+        // que ubicacion quiere
+        // switch en java por los precios
+        //
+    }
+    // le pido los datos al cliente:
+    // nombre, apellido, new Cliente, antes de pedir la tarjeta, preguntar si es miembro  elegir el metodo de pago
 }
