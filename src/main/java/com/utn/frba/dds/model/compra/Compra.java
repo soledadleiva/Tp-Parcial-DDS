@@ -92,8 +92,6 @@ public class Compra {
         this.entradas = entradas;
     }
 
-
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -118,9 +116,7 @@ public class Compra {
         this.descuento = descuento;
     }
 
-    public EstadoCompra getEstadoCompra() {
-        return estadoCompra;
-    }
+    public EstadoCompra getEstadoCompra() { return estadoCompra; }
 
     public void setEstadoCompra(EstadoCompra estado) {
         this.estadoCompra = estado;
@@ -189,5 +185,6 @@ public class Compra {
         //
     }
     // le pido los datos al cliente:
-    // nombre, apellido, new Cliente, antes de pedir la tarjeta, preguntar si es miembro  elegir el metodo de pago
+    // nombre, apellido, new Cliente, antes de pedir la tarjeta, preguntar si es miembro, o tiene cupon,
+    // y si es asi aplicar uno elegir el metodo de pago
 }
