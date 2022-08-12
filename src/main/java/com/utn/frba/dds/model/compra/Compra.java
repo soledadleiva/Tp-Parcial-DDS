@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.entrada.Entrada;
-import com.utn.frba.dds.model.metodosDePago.MetodoDePago;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,9 +28,7 @@ public class Compra {
     @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    @JsonIgnore
-    @Transient
-    private MetodoDePago metodoDePago;
+
     @JsonIgnore
     @Transient
     private DescuentoStrategy descuento;
@@ -46,23 +43,22 @@ public class Compra {
         estadoCompra = new CompraEnCurso(this);
     }
     
-    public String mensajeCompra(){
-       return estadoCompra.mensajeCompra();
+    public void mensajeCompra(){
+
+        estadoCompra.mensajeCompra();
     }
 
-    public Compra(List<Entrada> entradas, Cliente cliente, MetodoDePago metodoDePago, DescuentoStrategy descuento, EstadoCompra estado) {
+    public Compra(List<Entrada> entradas, Cliente cliente, DescuentoStrategy descuento, EstadoCompra estado) {
         this.entradas = entradas;
         this.cliente = cliente;
-        this.metodoDePago = metodoDePago;
         this.descuento = descuento;
         this.estadoCompra = estado;
     }
 
-    public Compra(Integer id, List<Entrada> entradas, Cliente cliente, MetodoDePago metodoDePago, DescuentoStrategy descuento, EstadoCompra estadoCompra, LocalDate fechaDeCompra) {
+    public Compra(Integer id, List<Entrada> entradas, Cliente cliente, DescuentoStrategy descuento, EstadoCompra estadoCompra, LocalDate fechaDeCompra) {
         this.id = id;
         this.entradas = entradas;
         this.cliente = cliente;
-        this.metodoDePago = metodoDePago;
         this.descuento = descuento;
         this.estadoCompra = estadoCompra;
         this.fechaDeCompra = fechaDeCompra;
@@ -98,14 +94,6 @@ public class Compra {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    public MetodoDePago getMetodoDePago() {
-        return metodoDePago;
-    }
-
-    public void setMetodoDePago(MetodoDePago metodoDePago) {
-        this.metodoDePago = metodoDePago;
     }
 
     public DescuentoStrategy getDescuento() {

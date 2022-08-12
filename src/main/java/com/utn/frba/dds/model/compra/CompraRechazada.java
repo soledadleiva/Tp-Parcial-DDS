@@ -25,8 +25,8 @@ public class CompraRechazada extends EstadoCompra{
     }
 
     @Override
-    public String mensajeCompra() {
-        return "Lo sentimos, su compra fue rechazada ya que se ha superado la cantidad maxima de entradas por persona";
+    public void mensajeCompra() {
+        System.out.println("Lo sentimos, su compra fue rechazada ya que se ha superado la cantidad maxima de entradas por persona");
     }
     
     

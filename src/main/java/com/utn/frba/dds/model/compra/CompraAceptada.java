@@ -27,8 +27,8 @@ public class CompraAceptada extends EstadoCompra {
     }
 
     @Override
-    public String mensajeCompra() {
-        return "La compra ha sido aceptada";
+    public void mensajeCompra() {
+        System.out.println("La compra ha sido aceptada");
     }
     
 }

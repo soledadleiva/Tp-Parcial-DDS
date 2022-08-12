@@ -26,8 +26,8 @@ public class CompraFinalizada extends EstadoCompra{
     }
 
     @Override
-    public String mensajeCompra() {
-        return "La compra ha finalizado con exito!";
+    public void mensajeCompra() {
+        System.out.println("La compra ha finalizado con exito!");
     }
     
 }

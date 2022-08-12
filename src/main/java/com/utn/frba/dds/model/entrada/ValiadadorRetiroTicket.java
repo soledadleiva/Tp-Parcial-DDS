@@ -2,7 +2,7 @@
 package com.utn.frba.dds.model.entrada;
 
 
-public class ValiadadorEntrada {
+public class ValiadadorRetiroTicket {
     
     //Logica para validar el codigo de entrada?
 }

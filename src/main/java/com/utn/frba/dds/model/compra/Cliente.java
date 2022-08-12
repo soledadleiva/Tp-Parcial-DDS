@@ -17,22 +17,21 @@ public class Cliente {
     private String mail;
     private Boolean esMiembro;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // Relacion bidireccional con Tarjeta
-    private List<Tarjeta> tarjetas;
+    private String tarjeta;
 
 
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nombre, String apellido, String direccion, String mail, Boolean esMiembro, List<Tarjeta> tarjetas) {
+    public Cliente(Integer id, String nombre, String apellido, String direccion, String mail, Boolean esMiembro, String tarjeta) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.mail = mail;
         this.esMiembro = esMiembro;
-        this.tarjetas = tarjetas;
+        this.tarjeta = tarjeta;
     }
 
     public String getNombre() {
@@ -67,12 +66,12 @@ public class Cliente {
         this.mail = mail;
     }
 
-    public List<Tarjeta> getTarjetas() {
-        return tarjetas;
+    public String getTarjeta() {
+        return tarjeta;
     }
 
-    public void setTarjetas(List<Tarjeta> tarjetas) {
-        this.tarjetas = tarjetas;
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
 
     public Integer getId() {

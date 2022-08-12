@@ -39,8 +39,9 @@ public class CompraEnCurso extends EstadoCompra {
     }
 
     @Override
-    public String mensajeCompra() {
-    return "La compra se encuentra en curso";
+    public void mensajeCompra() {
+
+        System.out.println("La compra se encuentra en curso");
         }
     
    

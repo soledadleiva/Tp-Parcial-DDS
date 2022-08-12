@@ -22,8 +22,6 @@ import java.util.List;
     @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
 
-    @OneToMany(mappedBy = "sector",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Ubicacion> ubicacion;
     @Enumerated(EnumType.STRING)
     @Column(name = "tipoDeSector")
     private TipoSector tipo;
@@ -33,10 +31,9 @@ import java.util.List;
     public Sector() {
     }
 
-    public Sector(Integer id, List<Entrada> entradas, List<Ubicacion> ubicacion, TipoSector tipo, float precio) {
+    public Sector(Integer id, List<Entrada> entradas, TipoSector tipo, float precio) {
         this.id = id;
         this.entradas = entradas;
-        this.ubicacion = ubicacion;
         this.tipo = tipo;
         this.precio = precio;
     }
@@ -55,14 +52,6 @@ import java.util.List;
 
     public void setEntradas(List<Entrada> entradas) {
         this.entradas = entradas;
-    }
-
-    public List<Ubicacion> getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(List<Ubicacion> ubicacion) {
-        this.ubicacion = ubicacion;
     }
 
     public TipoSector getTipo() {

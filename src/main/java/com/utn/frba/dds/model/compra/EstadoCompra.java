@@ -15,5 +15,5 @@ public abstract class EstadoCompra {
     public abstract void eliminarEntrada(Entrada entrada);
     public abstract void borrar();
     public abstract EstadoCompra estadoSiguiente();
-    public abstract String mensajeCompra();
+    public abstract void mensajeCompra();
 }
