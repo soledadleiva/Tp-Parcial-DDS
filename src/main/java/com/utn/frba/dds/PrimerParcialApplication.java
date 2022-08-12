@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class PrimerParcialApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PrimerParcialApplication.class, args);
+/*
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Ingrese 0 para salir, 1 para buscar un artista.");
 		int seleccion = entrada.nextInt();
@@ -39,7 +40,7 @@ public class PrimerParcialApplication {
 
 		// una vez que eligio la compra y todo
 		//Cliente cliente = cargarDatosCliente();
-	} */
+	}
 	/*private static Cliente cargarDatosCliente(){
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Ingrese su nombre: ");
@@ -51,9 +52,11 @@ public class PrimerParcialApplication {
 		System.out.println("Ingrese su mail: ");
 		mail = entrada.nextLine();
 		Cliente cliente = new Cliente(nombre, apellido, direccion, mail,[]);
-	} */
+	}
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
+	}
+	*/
 	}
 }
