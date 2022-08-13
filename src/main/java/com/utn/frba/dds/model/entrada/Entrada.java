@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.compra.Compra;
+import com.utn.frba.dds.model.sector.Sector;
 
 import javax.persistence.*;
 
@@ -22,7 +23,9 @@ public class Entrada {
     @ManyToOne
     @JoinColumn(name = "sector_id")
     private Sector sector;
-    @Transient
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "artista_id")
     private Artista artista;
     private String lugar;
     private String fecha;

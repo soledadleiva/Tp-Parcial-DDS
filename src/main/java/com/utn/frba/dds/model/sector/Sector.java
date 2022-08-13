@@ -1,9 +1,11 @@
 
-package com.utn.frba.dds.model.entrada;
+package com.utn.frba.dds.model.sector;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.utn.frba.dds.model.entrada.Entrada;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.List;
         property = "id")
 @Entity
 @Table(name = "sector")
-        public class Sector {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_sector", discriminatorType = DiscriminatorType.STRING)
+        public abstract class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -22,19 +26,15 @@ import java.util.List;
     @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipoDeSector")
-    private TipoSector tipo;
     private float precio;
     
 
     public Sector() {
     }
 
-    public Sector(Integer id, List<Entrada> entradas, TipoSector tipo, float precio) {
+    public Sector(Integer id, List<Entrada> entradas,float precio) {
         this.id = id;
         this.entradas = entradas;
-        this.tipo = tipo;
         this.precio = precio;
     }
 
@@ -54,13 +54,6 @@ import java.util.List;
         this.entradas = entradas;
     }
 
-    public TipoSector getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoSector tipo) {
-        this.tipo = tipo;
-    }
 
     public float getPrecio() {
         return precio;
@@ -70,19 +63,5 @@ import java.util.List;
         this.precio = precio;
     }
     
-    public float precio(){
-        if(tipo == TipoSector.CAMPO){
-            return 8599;
-        }
-        if(tipo == TipoSector.CAMPOVIP){
-            return 16800;
-        }
-        if(tipo == TipoSector.GENERAL){
-            return 10000;
-        }
-        if(tipo == TipoSector.PLATEA){
-            return 11500;
-        } 
-        return 0;
-    }
+
 }

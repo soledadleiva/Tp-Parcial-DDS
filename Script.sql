@@ -51,30 +51,6 @@ CREATE TABLE  IF NOT EXISTS sector (
 );
 
 
-CREATE TABLE IF NOT EXISTS tarjeta (
-  id INT NOT NULL,
-   numero_tarjeta VARCHAR(255) NULL,
-   es_tarjeta_valida BIT(1) NULL,
-   saldo FLOAT NOT NULL,
-   limite FLOAT NOT NULL,
-   cliente_id INT NULL,
-   CONSTRAINT pk_tarjeta PRIMARY KEY (id)
-);
-
-ALTER TABLE tarjeta ADD CONSTRAINT FK_TARJETA_ON_CLIENTE FOREIGN KEY (cliente_id) REFERENCES cliente (id);
-
-
-CREATE TABLE IF NOT EXISTS ubicacion (
-  id INT NOT NULL,
-   fila INT NULL,
-   columna INT NULL,
-   sector_id INT NULL,
-   CONSTRAINT pk_ubicacion PRIMARY KEY (id)
-);
-
-ALTER TABLE ubicacion ADD CONSTRAINT FK_UBICACION_ON_SECTOR FOREIGN KEY (sector_id) REFERENCES sector (id);
-
-
 /**************************************************/
 /*---------------------CLIENTES------------------ */
 
@@ -153,74 +129,6 @@ VALUES('1', '8599', 'CAMPO'),
 ('3', '10000', 'GENERAL'),
 ('4', '11500', 'PLATEA');
 
-/**************************************************/
-/*--------------------UBICACIONES------------------*/
-
-INSERT INTO `ubicacion`(`id`, `columna`, `fila`, `sector_id`)
-VALUES('1', '1', '1', '1');
-
-INSERT INTO `ubicacion`(`id`, `columna`, `fila`, `sector_id`)
-VALUES('2', '2', '10', '2');
-
-INSERT INTO `ubicacion`(`id`, `columna`, `fila`, `sector_id`)
-VALUES('3', '3', '20', '3');
-
-INSERT INTO `ubicacion`(`id`, `columna`, `fila`, `sector_id`)
-VALUES('4', '4', '30', '4');
-
-/**************************************************/
-/*--------------------TARJETAS--------------------*/
-
-INSERT INTO `tarjeta`(
-    `id`,
-    `es_tarjeta_valida`,
-    `limite`,
-    `numero_tarjeta`,
-    `saldo`,
-    `cliente_id`
-)
-VALUES(
-    '1',b'1','10000','4040228741788674','4765','1'
-);
-
-
-INSERT INTO `tarjeta`(
-    `id`,
-    `es_tarjeta_valida`,
-    `limite`,
-    `numero_tarjeta`,
-    `saldo`,
-    `cliente_id`
-)
-VALUES(
-    '2',b'0','15000','4040229138074983','50','1'
-);
-
-
-INSERT INTO `tarjeta`(
-    `id`,
-    `es_tarjeta_valida`,
-    `limite`,
-    `numero_tarjeta`,
-    `saldo`,
-    `cliente_id`
-)
-VALUES(
-    '3',b'1','200000','4040228533801297','10000','2'
-);
-
-
-INSERT INTO `tarjeta`(
-    `id`,
-    `es_tarjeta_valida`,
-    `limite`,
-    `numero_tarjeta`,
-    `saldo`,
-    `cliente_id`
-)
-VALUES(
-    '4',b'0','50000','4040223241917162','10','3'
-);
 
 /**************************************************/
 /*--------------------ENTRADAS--------------------*/

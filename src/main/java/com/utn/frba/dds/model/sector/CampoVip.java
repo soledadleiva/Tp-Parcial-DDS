@@ -1,4 +1,24 @@
 package com.utn.frba.dds.model.sector;
 
-public class CampoVip {
+import com.utn.frba.dds.model.entrada.Entrada;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import java.util.List;
+
+@Entity
+@DiscriminatorValue("CampoVip")
+public class CampoVip extends Sector {
+
+    public CampoVip() {
+    }
+
+    public CampoVip(Integer id, List<Entrada> entradas, float precio) {
+        super(id, entradas, precio);
+    }
+
+    @Override
+    public void setPrecio(float precio) {
+        super.setPrecio(25000);
+    }
 }
