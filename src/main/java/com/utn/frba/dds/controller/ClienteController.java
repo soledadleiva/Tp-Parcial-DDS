@@ -58,17 +58,5 @@ public class ClienteController {
         }
     }
 
-    /*
-    @GetMapping("/search")
-    public ResponseEntity<Cliente> search(@RequestParam String filtro){
-        try{
-            List<Cliente> clientes = repoCliente.search(filtro);
-            return (ResponseEntity<Cliente>) clientes;
-        }
-        catch (Exception e){
-            return (ResponseEntity<Cliente>) ResponseEntity.status(HttpStatus.NOT_FOUND);
-        }
-    }
-    */
 
 }

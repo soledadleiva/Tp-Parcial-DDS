@@ -34,4 +34,5 @@ public class ArtistaService {
         restTemplate.delete(basePath + "/artists/" + id);
     }
 
+
 }

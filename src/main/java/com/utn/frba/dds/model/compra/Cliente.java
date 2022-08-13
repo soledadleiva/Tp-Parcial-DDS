@@ -17,6 +17,8 @@ public class Cliente {
     private String mail;
     private Boolean esMiembro;
 
+    private Boolean tieneCupon;
+
     private String tarjeta;
 
 
@@ -31,6 +33,27 @@ public class Cliente {
         this.direccion = direccion;
         this.mail = mail;
         this.esMiembro = esMiembro;
+        this.tarjeta = tarjeta;
+    }
+
+    public Cliente(Integer id, String nombre, String apellido, String direccion, String mail, Boolean esMiembro, Boolean tieneCupon, String tarjeta) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.mail = mail;
+        this.esMiembro = esMiembro;
+        this.tieneCupon = tieneCupon;
+        this.tarjeta = tarjeta;
+    }
+
+    public Cliente(String nombre, String apellido, String direccion, String mail, Boolean esMiembro, Boolean tieneCupon, String tarjeta) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.mail = mail;
+        this.esMiembro = esMiembro;
+        this.tieneCupon = tieneCupon;
         this.tarjeta = tarjeta;
     }
 
@@ -88,5 +111,13 @@ public class Cliente {
 
     public void setEsMiembro(Boolean esMiembro) {
         this.esMiembro = esMiembro;
+    }
+
+    public Boolean getTieneCupon() {
+        return tieneCupon;
+    }
+
+    public void setTieneCupon(Boolean tieneCupon) {
+        this.tieneCupon = tieneCupon;
     }
 }

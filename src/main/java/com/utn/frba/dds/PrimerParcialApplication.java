@@ -1,16 +1,26 @@
 package com.utn.frba.dds;
 
-import com.utn.frba.dds.model.compra.Compra;
+import com.utn.frba.dds.controller.ArtistaApiController;
+import com.utn.frba.dds.controller.ArtistaController;
+import com.utn.frba.dds.model.entrada.Artista;
+import com.utn.frba.dds.service.ApiDatosArtista;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
-public class PrimerParcialApplication {
+public class PrimerParcialApplication implements CommandLineRunner {
+
+	@Autowired
+	ArtistaApiController artistas;
+
+	@Autowired
+	ArtistaController artistasBd;
+
 	public static void main(String[] args) {
 		SpringApplication.run(PrimerParcialApplication.class, args);
 /*
@@ -58,5 +68,28 @@ public class PrimerParcialApplication {
 		return builder.build();
 	}
 	*/
+
+
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+/*  funciona
+		System.out.println("La lista es:" + artistas.getAll());
+
+		List<Artista> artistasAPersistir = new ArrayList<>();
+		for (ApiDatosArtista apiartista : artistas.getArtistas()) {
+			Artista artista = new Artista(apiartista.getId(),apiartista.getName(), apiartista.getPlace(), apiartista.getDate());
+				artistasAPersistir.add(artista);
+				artistasBd.saveArtista(artista);
+
+		}
+
+		for(Artista artista: artistasAPersistir){
+			System.out.println(artistasAPersistir);
+		}
+	}
+*/
 	}
 }

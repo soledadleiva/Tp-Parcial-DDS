@@ -37,7 +37,6 @@ public class CompraController {
         return new ResponseEntity(repoCompra.findById(id), HttpStatus.OK);
     }
 
-    //Consultas con JPQL
 
 
 }
