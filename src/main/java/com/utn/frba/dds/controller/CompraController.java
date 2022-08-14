@@ -1,6 +1,7 @@
 package com.utn.frba.dds.controller;
 
 import com.utn.frba.dds.model.compra.Compra;
+import com.utn.frba.dds.model.entrada.Artista;
 import com.utn.frba.dds.repository.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,11 @@ public class CompraController {
     @GetMapping("/compras")
     public ResponseEntity<List<Compra>> listarCompras() {
         return new ResponseEntity(repoCompra.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/lista")
+    public List<Compra> getCompras(){
+        return repoCompra.findAll();
     }
 
     @PostMapping("/compras")

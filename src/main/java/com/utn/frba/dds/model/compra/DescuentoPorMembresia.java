@@ -2,11 +2,11 @@
 package com.utn.frba.dds.model.compra;
 
 
-public class DescuentoPorMembresia implements DescuentoStrategy {
+public class DescuentoPorMembresia extends DescuentoStrategy {
 
 
     @Override
-    public float aplicarDescuento(Compra compra) {
+    public float descuentoAplicado(Compra compra) {
         if(compra.cantidadDeEntradas() == 4){
             return compra.precioTotalEntradas() * 20 /100;
         }
