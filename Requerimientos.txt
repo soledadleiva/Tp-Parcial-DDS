@@ -1,4 +1,4 @@
-Para este sistema usaremos la API: -falta link-
+Para este sistema usaremos la API: https://62f48bd6ac59075124bf7266.mockapi.io/api/v1/artists
 
 El propósito de este documento es analizar y desarrollar mediante la metodología más adecuada un sistema de venta de entradas para conciertos.
 Dentro de este se describen todos los requerimientos y funciones.
