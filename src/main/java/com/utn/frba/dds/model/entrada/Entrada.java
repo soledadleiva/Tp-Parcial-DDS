@@ -7,11 +7,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.compra.Compra;
 import com.utn.frba.dds.model.sector.Sector;
 
+
 import javax.persistence.*;
 
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+      generator = ObjectIdGenerators.PropertyGenerator.class,
+       property = "id")
 @Entity
 @Table(name = "entrada")
 public class Entrada {

@@ -30,8 +30,7 @@ public class CompraAceptada extends EstadoCompra {
     public void mensajeCompra() {
         System.out.println("La compra ha sido aceptada");
     }
-    
-}
 
-//aca todavia no pago ni ingreso datos, una vez que ya esta aecptada llama un metodo para que regrese
-// a Compra
+
+
+}

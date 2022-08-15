@@ -1,7 +1,10 @@
 package com.utn.frba.dds.controller;
 
+import com.utn.frba.dds.model.compra.Compra;
+import com.utn.frba.dds.model.entrada.Artista;
 import com.utn.frba.dds.model.entrada.Entrada;
 import com.utn.frba.dds.repository.EntradaRepository;
+import com.utn.frba.dds.service.EntradaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,11 @@ public class EntradaController {
     @Autowired
     EntradaRepository repoEntrada;
 
+    @Autowired
+    EntradaService servicio;
     @GetMapping("/entradas")
-    public ResponseEntity<List<Entrada>> listarEntradas() {
-        return new ResponseEntity(repoEntrada.findAll(), HttpStatus.OK);
+    public List<Entrada> getEntradas(){
+        return repoEntrada.findAll();
     }
 
     @PostMapping("/entradas")
@@ -35,5 +40,15 @@ public class EntradaController {
     @GetMapping("/entradas/{id}")
     public ResponseEntity<Entrada> obtenerEntradaPorId(@PathVariable Integer id){
         return new ResponseEntity(repoEntrada.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/entradas/search")
+    public ResponseEntity<?> searchByIdCompra(@RequestParam Integer filtro){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.findByIdCompra(filtro));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+        }
+
     }
 }

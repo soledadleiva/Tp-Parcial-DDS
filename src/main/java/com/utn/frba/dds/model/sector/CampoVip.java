@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("CampoVip")
+@DiscriminatorValue("CAMPOVIP")
 public class CampoVip extends Sector {
 
     public CampoVip() {
@@ -19,6 +19,11 @@ public class CampoVip extends Sector {
 
     @Override
     public void setPrecio(float precio) {
-        super.setPrecio(25000);
+        super.setPrecio(precio);
     }
+
+    public CampoVip(float precio) {
+        super(precio);
+    }
+
 }

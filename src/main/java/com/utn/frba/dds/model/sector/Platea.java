@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("Platea")
+@DiscriminatorValue("PLATEA")
 public class Platea extends Sector {
 
     public Platea() {
@@ -17,8 +17,41 @@ public class Platea extends Sector {
         super(id, entradas, precio);
     }
 
+    public Platea(Integer id, float precio) {
+        super(id, precio);
+    }
+
+    @Override
+    public Integer getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(Integer id) {
+        super.setId(id);
+    }
+
+    @Override
+    public List<Entrada> getEntradas() {
+        return super.getEntradas();
+    }
+
+    @Override
+    public void setEntradas(List<Entrada> entradas) {
+        super.setEntradas(entradas);
+    }
+
+    @Override
+    public float getPrecio() {
+        return super.getPrecio();
+    }
+
     @Override
     public void setPrecio(float precio) {
-        super.setPrecio(18000);
+        super.setPrecio(precio);
+    }
+
+    public Platea(float precio) {
+        super(precio);
     }
 }

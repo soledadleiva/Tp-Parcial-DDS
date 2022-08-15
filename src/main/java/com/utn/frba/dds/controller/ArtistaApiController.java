@@ -1,7 +1,7 @@
 package com.utn.frba.dds.controller;
 
 import com.utn.frba.dds.service.ApiDatosArtista;
-import com.utn.frba.dds.service.ArtistaService;
+import com.utn.frba.dds.service.ApiArtistas;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArtistaApiController {
 
-    private final ArtistaService artistaService;
+    private final ApiArtistas artistaService;
 
     @GetMapping
     public ResponseEntity<List<ApiDatosArtista>> getAll(){

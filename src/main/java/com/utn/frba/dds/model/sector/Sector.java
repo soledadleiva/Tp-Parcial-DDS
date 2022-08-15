@@ -22,19 +22,28 @@ import java.util.List;
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @JsonBackReference
+   @JsonBackReference
     @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
 
-    private float precio;
+    private float precio = 10000;
     
 
     public Sector() {
     }
 
-    public Sector(Integer id, List<Entrada> entradas,float precio) {
+    public Sector(float precio) {
+        this.precio = precio;
+    }
+
+    public Sector(Integer id, List<Entrada> entradas, float precio) {
         this.id = id;
         this.entradas = entradas;
+        this.precio = precio;
+    }
+
+    public Sector(Integer id, float precio) {
+        this.id = id;
         this.precio = precio;
     }
 

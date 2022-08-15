@@ -2,6 +2,8 @@ package com.utn.frba.dds.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,12 +12,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ArtistaService {
+
+public class ApiArtistas {
 
     @Value("${spring.external.service.base-url}")
     private String basePath;
 
     private final RestTemplate restTemplate;
+
+
+
 
     public List<ApiDatosArtista> getArtistas() {
         ApiDatosArtista[] response = restTemplate.getForObject(basePath + "/artists", ApiDatosArtista[].class);

@@ -7,22 +7,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.utn.frba.dds.model.entrada.Entrada;
 
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
+       generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
 @Entity
 @Table(name = "compra")
-public class Compra {
+public class Compra implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @JsonBackReference
+   // @JsonBackReference
     @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas;
     @ManyToOne()
@@ -38,11 +40,10 @@ public class Compra {
 
     private LocalDate fechaDeCompra;
 
-    
     public Compra() {
         estadoCompra = new CompraEnCurso(this);
     }
-    
+
     public void mensajeCompra(){
 
         estadoCompra.mensajeCompra();
@@ -61,6 +62,19 @@ public class Compra {
         this.cliente = cliente;
         this.descuento = descuento;
         this.estadoCompra = estadoCompra;
+        this.fechaDeCompra = fechaDeCompra;
+    }
+
+    public Compra(Integer id, List<Entrada> entradas, Cliente cliente, LocalDate fechaDeCompra) {
+        this.id = id;
+        this.entradas = entradas;
+        this.cliente = cliente;
+        this.fechaDeCompra = fechaDeCompra;
+    }
+
+    public Compra(Integer id, Cliente cliente, LocalDate fechaDeCompra) {
+        this.id = id;
+        this.cliente = cliente;
         this.fechaDeCompra = fechaDeCompra;
     }
 
@@ -100,8 +114,9 @@ public class Compra {
         return descuento;
     }
 
-    public void setDescuento(DescuentoStrategy descuento) {
+    public DescuentoStrategy setDescuento(DescuentoStrategy descuento) {
         this.descuento = descuento;
+        return descuento;
     }
 
     public EstadoCompra getEstadoCompra() { return estadoCompra; }
@@ -110,8 +125,7 @@ public class Compra {
         this.estadoCompra = estado;
     }
     
-    
-    // pagarCompra()
+
     
     public int cantidadDeEntradas(){
         return this.entradas.size();
@@ -152,27 +166,33 @@ public class Compra {
     public float precioTotalEntradas() {
         float sumatoriaPrecioEntradas= 0;
         for(Entrada entrada : entradas){
-            sumatoriaPrecioEntradas = sumatoriaPrecioEntradas + entrada.precioEntrada();
+            sumatoriaPrecioEntradas +=  precioEntrada(entrada);
+
         }
         return sumatoriaPrecioEntradas;
 
     }
+
+    public float descuentoAplicado(){
+        return descuento.descuentoAplicado(this);
+    }
     
     public float precioTotalConDescuento(){
         
-        return descuento.aplicarDescuento(this) ;
+        return precioTotalEntradas() - descuento.descuentoAplicado(this) ;
         
     }
 
-    public static void comprar() {
-        //Compra.Compra();
-        // setearia el estado compra en curso
-        System.out.println("Ingrese la ubicacion que desea ir (: ");
-        // que ubicacion quiere
-        // switch en java por los precios
-        //
+    public void descuentoAAplicar(){
+
+        if(cliente.getEsMiembro()){
+            this.setDescuento(new DescuentoPorMembresia());
+        }
+        else{
+            this.setDescuento(new DescuentoPorCupon());
+        }
     }
-    // le pido los datos al cliente:
-    // nombre, apellido, new Cliente, antes de pedir la tarjeta, preguntar si es miembro, o tiene cupon,
-    // y si es asi aplicar uno elegir el metodo de pago
+
+
+
 }

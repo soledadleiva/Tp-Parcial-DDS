@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("Campo")
+@DiscriminatorValue("CAMPO")
 public class Campo extends Sector {
 
     public Campo() {
@@ -20,6 +20,10 @@ public class Campo extends Sector {
 
     @Override
     public void setPrecio(float precio) {
-        super.setPrecio(15000);
+        super.setPrecio(precio);
+    }
+
+    public Campo(float precio) {
+        super(precio);
     }
 }

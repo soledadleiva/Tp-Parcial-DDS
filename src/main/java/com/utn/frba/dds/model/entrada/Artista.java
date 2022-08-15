@@ -3,6 +3,7 @@ package com.utn.frba.dds.model.entrada;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+       property = "id")
 @Entity
 @Table(name = "artista")
 public class Artista implements Serializable {
@@ -92,4 +93,6 @@ public class Artista implements Serializable {
         this.place = place;
         this.date = date;
     }
+
+
 }

@@ -1,8 +1,13 @@
 
 package com.utn.frba.dds.model.compra;
 
+import com.utn.frba.dds.controller.ClienteController;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Scanner;
 
 @Entity
 @Table(name = "cliente")
@@ -11,17 +16,15 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String nombre;
-    private String apellido;
-    private String direccion;
-    private String mail;
-    private Boolean esMiembro;
+    private  String nombre;
+    private  String apellido;
+    private  String direccion;
+    private  String mail;
+    private  Boolean esMiembro;
 
-    private Boolean tieneCupon;
+    private  Boolean tieneCupon;
 
-    private String tarjeta;
-
-
+    private  String tarjeta;
 
     public Cliente() {
     }
@@ -120,4 +123,34 @@ public class Cliente {
     public void setTieneCupon(Boolean tieneCupon) {
         this.tieneCupon = tieneCupon;
     }
+
+ public static void ingresoDeDatos(){
+     Scanner entrada = new Scanner(System.in);
+     System.out.println("Ingrese su nombre: ");
+     String nombre = entrada.nextLine();
+     System.out.println("Ingrese su apellido: ");
+     String apellido = entrada.nextLine();
+     System.out.println("Ingrese su direccion: ");
+     String direccion = entrada.nextLine();
+     System.out.println("Ingrese su mail: ");
+     String mail = entrada.nextLine();
+     System.out.println("Ingrese su número de tarjeta: ");
+     String tarjeta = entrada.nextLine();
+     System.out.println("¿Cuenta con una membresia?");
+     Boolean esMiembro = entrada.nextBoolean();
+     System.out.println("¿Cuenta con un cupon de descuento?");
+     Boolean tieneCupon = entrada.nextBoolean();
+
+ }
+
+ public static void muestraDeDatos(Cliente cliente){
+     System.out.println("Los datos ingresados son: " + "\nNombre: " + cliente.getNombre()+
+             "\n Apellido: " + cliente.getApellido() +
+             "\n Dirección: " + cliente.getDireccion() +
+             "\n Mail: " + cliente.getMail() +
+             "\n Tiene Membresia: " + cliente.getEsMiembro() +
+             "\n Tiene un cupon: " + cliente.getTieneCupon() +
+             "\n Nro de tarjeta: " + cliente.getTarjeta());
+ }
+
 }

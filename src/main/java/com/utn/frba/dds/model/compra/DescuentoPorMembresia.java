@@ -4,6 +4,8 @@ package com.utn.frba.dds.model.compra;
 
 public class DescuentoPorMembresia extends DescuentoStrategy {
 
+    public DescuentoPorMembresia() {
+    }
 
     @Override
     public float descuentoAplicado(Compra compra) {

@@ -47,6 +47,13 @@ public class ArtistaController {
         return new ResponseEntity<List<Artista>>(artistaRepo.findByName(name), HttpStatus.OK);
         }
 
+        // Busqueda de artistas por nombre
+    @GetMapping("artistas/nombre/{name}")
+    public List<Artista> artistByName(@PathVariable String name){
+     return  artistaRepo.findByName(name);
+    }
+
+
     //Busqueda de un artistas que se presentan en una determinada fecha
           @GetMapping("artistas/date")
          public ResponseEntity getArtistByDate(@RequestParam String date){

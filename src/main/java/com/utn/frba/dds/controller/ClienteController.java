@@ -1,6 +1,7 @@
 package com.utn.frba.dds.controller;
 
 import com.utn.frba.dds.model.compra.Cliente;
+import com.utn.frba.dds.model.entrada.Artista;
 import com.utn.frba.dds.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 @RestController
 @RequestMapping("")

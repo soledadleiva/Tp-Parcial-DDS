@@ -1,23 +1,35 @@
 package com.utn.frba.dds.model.compra;
 
+
 import com.utn.frba.dds.controller.CompraController;
-import com.utn.frba.dds.repository.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DescuentoOrdenLlegada {
 
     @Autowired
-    CompraController compra;
+    CompraController compraController;
 
-    public Integer cantidadDeEntradas(){
-        Integer cantidad = compra.getCompras().size();
+
+    public Integer cantidadDeCompras(){
+        Integer cantidad = compraController.getCompras().size();
         return cantidad;
     }
 
-
-    public float descuento(CompraController compra){
-        return 0;
+    public Boolean cantidadValidaDeCompras(){
+       return this.cantidadDeCompras()<=3;
     }
+
+    public float ordenLlegada(){
+
+        if(cantidadValidaDeCompras()){
+            return  5 / 100;
+        }
+        else
+            return 0;
+
+    }
+
+
 
 
 
