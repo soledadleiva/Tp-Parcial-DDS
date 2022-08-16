@@ -1,11 +1,14 @@
 package com.utn.frba.dds;
 
 import com.utn.frba.dds.controller.ArtistaController;
+import com.utn.frba.dds.model.FactorySector.FactoryEspecial;
+import com.utn.frba.dds.model.FactorySector.FactorySector;
 import com.utn.frba.dds.model.compra.*;
 import com.utn.frba.dds.model.entrada.Artista;
 import com.utn.frba.dds.model.entrada.Entrada;
 import com.utn.frba.dds.model.sector.CampoVip;
 import com.utn.frba.dds.model.sector.Platea;
+import com.utn.frba.dds.model.sector.SectorEspecial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -56,8 +59,8 @@ public class Pruebas {
         //Compra1: Tiene cargadas una cantidad de entradas no permitidas por el sistemas, pasa a estado rechazado
         //compra1: Tiene la cantidad correcta de entradas asi que la compra finaliza con exito!
 
-        //Compra compra1 = new Compra(1, List.of(entrada1, entrada2), cliente1, LocalDate.of(2022, 8, 15));
-        Compra compra1 = new Compra(1, List.of(entrada1, entrada2, entrada3, entrada4,entrada5), cliente1, LocalDate.of(2022, 8, 15));
+        Compra compra1 = new Compra(1, List.of(entrada1, entrada2), cliente1, LocalDate.of(2022, 8, 15));
+        //Compra compra1 = new Compra(1, List.of(entrada1, entrada2, entrada3, entrada4,entrada5), cliente1, LocalDate.of(2022, 8, 15));
         Compra compra2 = new Compra(1, List.of(entrada6), cliente2, LocalDate.of(2022, 8, 20));
         List<Compra> compras = new ArrayList<>();
 
@@ -124,29 +127,35 @@ public class Pruebas {
                     int compr;
                     System.out.println("Ingrese la cantidad de entradas que desea: ");
                     compr = cantidad.nextInt();
-                    compra1.setEstadoCompra(new CompraEnCurso(compra1));
+                    Scanner discapacidad = new Scanner(System.in);
+                    String discapa;
+                    System.out.println("¿Posee alguna discapacidad motriz? En caso afirmativo ingrese: Y, en caso contrario: N ");
+                    discapa = discapacidad.nextLine();
+                    if(discapa.equals("Y")){
+                        new FactoryEspecial().crearSector();
+                        System.out.println("Se ha creado un nuevo sector especial");
+                        }
+                        compra1.setEstadoCompra(new CompraEnCurso(compra1));
                     if (compra1.tieneCantidadValidaDeEntradas()) {
-                        System.out.println("entra??");
                         compra1.estadoSiguiente();
                         compra1.mensajeCompra();
                         DescuentoOrdenLlegada DescuentoOrdenLlegada = new DescuentoOrdenLlegada();
                         compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(DescuentoOrdenLlegada));
-                        //compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(new DescuentoOrdenLlegada())).getOrdenLlegada().cantidadValidaDeCompras());
                         if (compra1.esPrimerasTresCompras()) {
+                            compra1.setDescuento(new DescuentoPorMembresia());
                             System.out.println("Se aplicara el descuento por orden de llegada: " + compra1.descuentoAplicado());
-                        } else {
+                        }else{
                             if (cliente.getEsMiembro()) {
                                 compra1.setDescuento(new DescuentoPorMembresia());
                                 System.out.println("Se aplicara el descuento por membresia de: " + compra1.descuentoAplicado());
-                            } else {
+                            }else{
                                 if (cliente.getTieneCupon()) {
                                     compra1.setDescuento(new DescuentoPorCupon());
                                     System.out.println("Se aplicara el descuento por cupon de: " + compra1.descuentoAplicado());
-                                } else {
+                                } else{
                                     System.out.println("No hay descuentos disponibles :( ");
                                 }
                             }
-                        }
 
                         System.out.println("*************************************");
 
@@ -163,7 +172,7 @@ public class Pruebas {
                         } else {
                             System.out.println("Precio total con descuento: " + compra1.precioTotalConDescuento());
                         }
-
+                    }
                         System.out.println("*************************************");
                     } else {
                         compra1.setEstadoCompra(new CompraRechazada(compra1));

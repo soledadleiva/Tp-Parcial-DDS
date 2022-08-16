@@ -181,7 +181,8 @@ public class Compra implements Serializable {
         
     }
     public boolean esPrimerasTresCompras(){
-        return descuento.cantidadTotalCompras();
+        return false;
     }
+
 
 }
