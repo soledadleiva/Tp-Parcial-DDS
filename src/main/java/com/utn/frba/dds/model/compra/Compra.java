@@ -125,8 +125,6 @@ public class Compra implements Serializable {
         this.estadoCompra = estado;
     }
     
-
-    
     public int cantidadDeEntradas(){
         return this.entradas.size();
     }
@@ -182,17 +180,8 @@ public class Compra implements Serializable {
         return precioTotalEntradas() - descuento.descuentoAplicado(this) ;
         
     }
-
-    public void descuentoAAplicar(){
-
-        if(cliente.getEsMiembro()){
-            this.setDescuento(new DescuentoPorMembresia());
-        }
-        else{
-            this.setDescuento(new DescuentoPorCupon());
-        }
+    public boolean esPrimerasTresCompras(){
+        return descuento.cantidadTotalCompras();
     }
-
-
 
 }

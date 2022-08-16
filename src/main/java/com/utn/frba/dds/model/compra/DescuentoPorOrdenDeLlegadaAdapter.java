@@ -16,6 +16,11 @@ public class DescuentoPorOrdenDeLlegadaAdapter extends DescuentoStrategy{
         this.ordenLlegada = ordenLlegada;
     }
 
+    @Override
+    public boolean cantidadTotalCompras(){
+        return ordenLlegada.cantidadValidaDeCompras();
+    }
+
 
     @Override
     public float descuentoAplicado(Compra compra) {

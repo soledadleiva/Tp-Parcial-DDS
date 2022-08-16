@@ -122,15 +122,22 @@ public class Pruebas {
                     if (compra1.tieneCantidadValidaDeEntradas()) {
                         compra1.estadoSiguiente();
                         compra1.mensajeCompra();
-
-                        if (cliente.getEsMiembro()) {
-                            compra1.setDescuento(new DescuentoPorMembresia());
-                            System.out.println("Se aplicara el decuento por membresia de: "+ compra1.descuentoAplicado());
-                        } else {
-                            compra1.setDescuento(new DescuentoPorCupon());
-                            System.out.println("Se aplicara el decuento por cupon de: "+ compra1.descuentoAplicado());
-
+                        DescuentoOrdenLlegada DescuentoOrdenLlegada = new DescuentoOrdenLlegada();
+                        compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(DescuentoOrdenLlegada));
+                        //compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(new DescuentoOrdenLlegada())).getOrdenLlegada().cantidadValidaDeCompras());
+                        if (compra1.esPrimerasTresCompras()){
+                            System.out.println("Se aplicara el descuento por orden de llegada: " + compra1.descuentoAplicado());
                         }
+                        else{
+                            if (cliente.getEsMiembro()) {
+                                compra1.setDescuento(new DescuentoPorMembresia());
+                                System.out.println("Se aplicara el descuento por membresia de: " + compra1.descuentoAplicado());
+                            } else {
+                                compra1.setDescuento(new DescuentoPorCupon());
+                                System.out.println("Se aplicara el descuento por cupon de: " + compra1.descuentoAplicado());
+                            }
+                        }
+                    }
 
                         System.out.println("*************************************");
 
@@ -161,10 +168,11 @@ public class Pruebas {
                     System.out.println("Ingrese 0 para salir, 1 para iniciar una nueva compra.");
                     seleccion = entrada.nextInt();
                 }
-            }
-        }while (seleccion != 0);
-        }
+            } while (seleccion != 0);
+      }
     }
+
+
 
 
 
