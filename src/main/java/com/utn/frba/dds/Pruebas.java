@@ -56,6 +56,7 @@ public class Pruebas {
         //Compra1: Tiene cargadas una cantidad de entradas no permitidas por el sistemas, pasa a estado rechazado
         //compra1: Tiene la cantidad correcta de entradas asi que la compra finaliza con exito!
 
+        //Compra compra1 = new Compra(1, List.of(entrada1, entrada2), cliente1, LocalDate.of(2022, 8, 15));
         Compra compra1 = new Compra(1, List.of(entrada1, entrada2, entrada3, entrada4,entrada5), cliente1, LocalDate.of(2022, 8, 15));
         Compra compra2 = new Compra(1, List.of(entrada6), cliente2, LocalDate.of(2022, 8, 20));
         List<Compra> compras = new ArrayList<>();
@@ -77,6 +78,11 @@ public class Pruebas {
                     if (artistaIngresado.equals(artista.name)) {
                         artistasEncontrados.add(artista);
                     }
+                }
+
+                if (artistasEncontrados.size()==0){
+                    System.out.println("No existe ese artista :( ");
+                    System.exit(0);
                 }
 
                 for (Artista artista : artistasEncontrados) {
@@ -120,24 +126,27 @@ public class Pruebas {
                     compr = cantidad.nextInt();
                     compra1.setEstadoCompra(new CompraEnCurso(compra1));
                     if (compra1.tieneCantidadValidaDeEntradas()) {
+                        System.out.println("entra??");
                         compra1.estadoSiguiente();
                         compra1.mensajeCompra();
                         DescuentoOrdenLlegada DescuentoOrdenLlegada = new DescuentoOrdenLlegada();
                         compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(DescuentoOrdenLlegada));
                         //compra1.setDescuento(new DescuentoPorOrdenDeLlegadaAdapter(new DescuentoOrdenLlegada())).getOrdenLlegada().cantidadValidaDeCompras());
-                        if (compra1.esPrimerasTresCompras()){
+                        if (compra1.esPrimerasTresCompras()) {
                             System.out.println("Se aplicara el descuento por orden de llegada: " + compra1.descuentoAplicado());
-                        }
-                        else{
+                        } else {
                             if (cliente.getEsMiembro()) {
                                 compra1.setDescuento(new DescuentoPorMembresia());
                                 System.out.println("Se aplicara el descuento por membresia de: " + compra1.descuentoAplicado());
                             } else {
-                                compra1.setDescuento(new DescuentoPorCupon());
-                                System.out.println("Se aplicara el descuento por cupon de: " + compra1.descuentoAplicado());
+                                if (cliente.getTieneCupon()) {
+                                    compra1.setDescuento(new DescuentoPorCupon());
+                                    System.out.println("Se aplicara el descuento por cupon de: " + compra1.descuentoAplicado());
+                                } else {
+                                    System.out.println("No hay descuentos disponibles :( ");
+                                }
                             }
                         }
-                    }
 
                         System.out.println("*************************************");
 
@@ -149,20 +158,19 @@ public class Pruebas {
                         System.out.println("Cantidad de entradas: " + compra1.getEntradas().size());
                         System.out.println("Fecha de Compra: " + LocalDate.now());
                         System.out.println("Precio total: " + compra1.precioTotalEntradas());
-                        if(compra1.precioTotalConDescuento() == 0.0){
+                        if (compra1.precioTotalConDescuento() == 0.0) {
                             System.out.println("Precio total con descuento: " + compra1.precioTotalEntradas());
-                        }else {
+                        } else {
                             System.out.println("Precio total con descuento: " + compra1.precioTotalConDescuento());
                         }
 
                         System.out.println("*************************************");
-
                     } else {
                         compra1.setEstadoCompra(new CompraRechazada(compra1));
                         compra1.mensajeCompra();
                         System.out.println("Vuelva pronto");
                     }
-
+                }
                 } else {
                     System.out.println("Seleccion invalida");
                     System.out.println("Ingrese 0 para salir, 1 para iniciar una nueva compra.");

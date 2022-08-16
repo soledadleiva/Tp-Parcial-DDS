@@ -9,5 +9,10 @@ public class DescuentoPorCupon extends DescuentoStrategy {
     public float descuentoAplicado(Compra compra) {
         return (compra.precioTotalEntradas() * 15) / 100 ;
     }
-    
+
+    @Override
+    public boolean cantidadTotalCompras() {
+        return false;
+    }
+
 }
